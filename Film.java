@@ -29,7 +29,7 @@ public class Film {
 		return zanr;
 	}
 	public void prikazFilma() {
-		System.out.println(naziv + " ("+godinaIzdanja+") - " 
+		System.out.println(this.naziv + " ("+this.godinaIzdanja+") - " 
 				+ zanr.getNaziv());
 	}
 	
