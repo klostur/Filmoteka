@@ -84,22 +84,7 @@ public class Filmoteka {
 		String unos = unesi();
 		switch (unos) {
 		case "1":
-			String unosZanr = "";
-			boolean done = false;
-			do {
-				try {
-					if (zanrovi.size() == 0) {
-						System.out.println("Nema unetih zanrova");
-						break;
-					}
-					prikaziZanrove();
-					unosZanr = unesi();
-					zanr = zanrovi.get(Integer.parseInt(unosZanr) - 1);
-					done = true;
-				} catch (IndexOutOfBoundsException e) {
-					System.out.println("Izaberite jedan od ponudjenih odgovora.");
-				}
-			} while (!done);
+			zanr = unesiPostojeciZanr();
 			break;
 		case "2":
 			zanr = unosNovogZanra();
@@ -107,13 +92,35 @@ public class Filmoteka {
 		default:
 			break;
 		}
-
 		Film film = new Film(String.valueOf(filmovi.size() + 1), naziv, godinaIzdanja, zanr);
 		filmovi.add(film);
 
 	}
 
+	private static Zanr unesiPostojeciZanr() {
+		Zanr zanr = null;
+		String unosZanr = "";
+		boolean done = false;
+		do {
+			try {
+				prikaziZanrove();
+				unosZanr = unesi();
+				zanr = zanrovi.get(Integer.parseInt(unosZanr) - 1);
+				done = true;
+			} catch (IndexOutOfBoundsException e) {
+				System.out.println("Izaberite jedan od ponudjenih odgovora.");
+			} catch (NumberFormatException e) {
+				System.out.println("Izaberite jedan on ponudjenih odgovora.");
+			}
+		} while (!done);
+		return zanr;
+	}
+
 	private static void prikaziZanrove() {
+		if (zanrovi.size() == 0) {
+			System.out.println("Nema unetih zanrova");
+			return;
+		}
 		for (int i = 0; i < zanrovi.size(); i++) {
 			System.out.println(i + 1 + ") " + zanrovi.get(i).getNaziv());
 		}
