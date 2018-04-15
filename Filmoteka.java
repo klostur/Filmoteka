@@ -71,28 +71,32 @@ public class Filmoteka {
 		}
 		System.out.println();
 	}
-
-	private static void unosNovogFilma() {
+	private static Film unosNovogFilmaBezZanra() {
 		System.out.println("Unesite naziv filma:");
 		String naziv = unesi();
 		System.out.println("Unesite godinu izdanja:");
 		int godinaIzdanja = Integer.parseInt(unesi());
+		Film film = new Film(String.valueOf(filmovi.size() + 1), naziv, godinaIzdanja);
+		return film;
+	}
+
+	private static void unosNovogFilma() {
+		Film film = unosNovogFilmaBezZanra();
 		System.out.println("1)Izaberi postojeci zanr 2)Unesi novi zanr");
 		System.out.println("---------------------------");
-
-		Zanr zanr = null;
+		
 		String unos = unesi();
 		switch (unos) {
 		case "1":
-			zanr = unesiPostojeciZanr();
+			film.setZanr(unesiPostojeciZanr());
 			break;
 		case "2":
-			zanr = unosNovogZanra();
+			film.setZanr(unosNovogZanra());
 			break;
 		default:
 			break;
 		}
-		Film film = new Film(String.valueOf(filmovi.size() + 1), naziv, godinaIzdanja, zanr);
+		
 		filmovi.add(film);
 
 	}
