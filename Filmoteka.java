@@ -33,21 +33,13 @@ public class Filmoteka {
 				pretragaFilmovaPoZanru();
 				break;
 			case "4":
-				snimiFilmovePoGodistu();
+				IO.snimiFilmoveGodiste(filmovi);
 				break;
 			default:
 				break;
 			}
 
 		} while (!unos.equals("x"));
-	}
-
-	private static void snimiFilmovePoGodistu() throws IOException {
-		System.out.println("Pocetna godina:");
-		int pocetak = Integer.parseInt(unesi());
-		System.out.println("Krajnja godina:");
-		int kraj = Integer.parseInt(unesi());
-		IO.snimiFilmoveGodiste(filmovi, pocetak, kraj);
 	}
 
 	private static void pretragaFilmovaPoZanru() {
@@ -120,6 +112,14 @@ public class Filmoteka {
 		return zanr;
 	}
 
+	private static Zanr unosNovogZanra() {
+		System.out.println("Unesite naziv zanra");
+		String naziv = unesi();
+		Zanr zanr = new Zanr(String.valueOf(zanrovi.size() + 1), naziv);
+		zanrovi.add(zanr);
+		return zanr;
+	}
+
 	private static void prikaziZanrove() {
 		if (zanrovi.size() == 0) {
 			System.out.println("Nema unetih zanrova");
@@ -128,14 +128,6 @@ public class Filmoteka {
 		for (int i = 0; i < zanrovi.size(); i++) {
 			System.out.println(i + 1 + ") " + zanrovi.get(i).getNaziv());
 		}
-	}
-
-	private static Zanr unosNovogZanra() {
-		System.out.println("Unesite naziv zanra");
-		String naziv = unesi();
-		Zanr zanr = new Zanr(String.valueOf(zanrovi.size() + 1), naziv);
-		zanrovi.add(zanr);
-		return zanr;
 	}
 
 	static String unesi() {

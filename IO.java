@@ -8,7 +8,11 @@ import java.util.List;
 public class IO {
 	private static String putanjaFilmovi = "filmovi";
 
-	public static void snimiFilmoveGodiste(List<Film> filmovi, int pocetak, int kraj) throws IOException {
+	public static void snimiFilmoveGodiste(List<Film> filmovi) throws IOException {
+		System.out.println("Pocetna godina:");
+		int pocetak = Integer.parseInt(Filmoteka.unesi());
+		System.out.println("Krajnja godina:");
+		int kraj = Integer.parseInt(Filmoteka.unesi());
 		PrintWriter output = null;
 		int counter = 1;
 		try {
