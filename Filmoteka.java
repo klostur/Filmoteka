@@ -17,6 +17,7 @@ public class Filmoteka {
 		filmovi.add(new Film(String.valueOf(filmovi.size() + 1), "Mrtav Tetreb", 1999, zanrovi.get(0)));
 		filmovi.add(new Film(String.valueOf(filmovi.size() + 1), "Kola ko u vola", 2000, zanrovi.get(1)));
 		filmovi.add(new Film(String.valueOf(filmovi.size() + 1), "Paja Patak u Dubrovniku", 2003, zanrovi.get(0)));
+		filmovi = IO.ucitajFilmoveIzFajla();
 
 		String unos = "";
 		do {
@@ -35,7 +36,11 @@ public class Filmoteka {
 			case "4":
 				IO.snimiFilmoveGodiste(filmovi);
 				break;
+			case "x":
+				IO.snimiFilmoveUFajl(filmovi);
+				break;
 			default:
+				System.out.println("Izaberite neku od ponudjenih opcija.");
 				break;
 			}
 
